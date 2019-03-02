@@ -15,7 +15,7 @@ class Aeon_Gateway extends WC_Payment_Gateway
     private static $_title = 'Aeon Gateway';
     private static $_method_title = 'Aeon Gateway';
     private static $_method_description = 'Aeon Gateway Plug-in for WooCommerce.';
-    private static $_errors = [];
+    private static $_errors = array();
 
     private static $discount = false;
     private static $valid_time = null;
@@ -112,7 +112,7 @@ class Aeon_Gateway extends WC_Payment_Gateway
     public function validate_aeon_address_field($key,$address)
     {
         if($this->settings['confirm_type'] == 'viewkey') {
-            if (strlen($address) == 95 && substr($address, 0, 1) == '4')
+            if (strlen($address) == 97 && substr($address, 0, 1) == 'Wm')
                 if(self::$cryptonote->verify_checksum($address))
                     return $address;
             self::$_errors[] = 'Aeon address is invalid';
@@ -228,6 +228,7 @@ class Aeon_Gateway extends WC_Payment_Gateway
             $this->log->add('aeon_gateway', 'Couldn\'t create subaddress for order ' . $order_id);
           }
         }
+        error_log(print_r($payment_id, true));
 
         $currency = $order->get_currency();
         $rate = self::get_live_rate($currency);
@@ -589,7 +590,7 @@ class Aeon_Gateway extends WC_Payment_Gateway
         $order_id = preg_replace("/[^0-9]+/", "", $_GET['order_id']);
         $order = wc_get_order( $order_id );
 
-        if($order->user_id != $user->ID)
+        if($order->get_user_id() != $user->ID)
             self::ajax_output(array('error' => '[ERROR] Order does not belong to this user'));
 
         if($order->get_payment_method() != self::$_id)

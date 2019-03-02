@@ -10,6 +10,9 @@ Author URI: https://monerointegrations.com/
 Ported by: 420coupe
 */
 // This code isn't for Dark Net Markets, please report them to Authority!
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 defined( 'ABSPATH' ) || exit;
 
@@ -210,7 +213,7 @@ function aeon_install() {
     if($wpdb->get_var("show tables like '$table_name'") != $table_name) {
         $sql = "CREATE TABLE $table_name (
                order_id BIGINT(20) UNSIGNED NOT NULL,
-               payment_id VARCHAR(94) DEFAULT '' NOT NULL,
+               payment_id VARCHAR(97) DEFAULT '' NOT NULL,
                currency VARCHAR(6) DEFAULT '' NOT NULL,
                rate BIGINT UNSIGNED DEFAULT 0 NOT NULL,
                amount BIGINT UNSIGNED DEFAULT 0 NOT NULL,
@@ -227,7 +230,7 @@ function aeon_install() {
     if($wpdb->get_var("show tables like '$table_name'") != $table_name) {
         $sql = "CREATE TABLE $table_name (
                id BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
-               payment_id VARCHAR(94) DEFAULT '' NOT NULL,
+               payment_id VARCHAR(97) DEFAULT '' NOT NULL,
                txid VARCHAR(64) DEFAULT '' NOT NULL,
                amount BIGINT UNSIGNED DEFAULT 0 NOT NULL,
                height MEDIUMINT UNSIGNED NOT NULL DEFAULT 0,

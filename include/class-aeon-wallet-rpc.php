@@ -99,12 +99,15 @@ class Aeon_Wallet_Rpc
 
         // Response (method invocation)
         $responseMessage = $this->getResponse($request);
+        $responseMessage = str_replace("\r\n", "\n", $responseMessage);
 
         // if is_debug mode is true then add response to is_debug and display it
         $this->debug('Response: ' . $responseMessage . "\r\n", true);
 
         // decode and create array ( can be object, just set to false )
         $responseDecoded = json_decode($responseMessage, true);
+        error_log("responseMessage:");
+        error_log(print_r($responseMessage, true));
 
         // check if decoding json generated any errors
         $jsonErrorMsg = $this->getJsonLastErrorMsg();
@@ -120,6 +123,9 @@ class Aeon_Wallet_Rpc
             }
             $this->validate(!is_null($responseDecoded['error']), $errorMessage);
         }
+        error_log(print_r($pMethod, true));
+        error_log(print_r($pParams, true));
+        error_log(print_r($responseDecoded, true));
         return $responseDecoded['result'];
     }
 
