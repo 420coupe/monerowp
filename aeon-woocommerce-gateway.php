@@ -17,8 +17,8 @@ error_reporting(E_ALL);
 defined( 'ABSPATH' ) || exit;
 
 // Constants, you can edit these if you fork this repo
-define('AEON_GATEWAY_MAINNET_EXPLORER_URL', 'http://162.210.173.150/');
-define('AEON_GATEWAY_TESTNET_EXPLORER_URL', 'http://162.210.173.151/');
+define('AEON_GATEWAY_MAINNET_EXPLORER_URL', 'http://162.210.173.150');
+define('AEON_GATEWAY_TESTNET_EXPLORER_URL', 'http://162.210.173.151');
 define('AEON_GATEWAY_ADDRESS_PREFIX', 0xB2);
 define('AEON_GATEWAY_ADDRESS_PREFIX_INTEGRATED', 0x2733);
 define('AEON_GATEWAY_ATOMIC_UNITS', 12);

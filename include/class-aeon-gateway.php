@@ -435,6 +435,7 @@ class Aeon_Gateway extends WC_Payment_Gateway
         }
         return $txs;
     }
+    error_log(print_r()
 
     public static function check_payment_explorer($payment_id)
     {
